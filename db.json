@@ -1,0 +1,18 @@
+{
+  "itens": [
+    {
+      "id": "287f",
+      "itemId": null,
+      "nome": "ovo",
+      "quantidade": 1,
+      "comprado": false
+    },
+    {
+      "id": "19bf",
+      "itemId": null,
+      "nome": "farinha",
+      "quantidade": 1,
+      "comprado": false
+    }
+  ]
+}

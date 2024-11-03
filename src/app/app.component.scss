@@ -1,0 +1,16 @@
+.container {
+    display: grid;
+    width: 100vw;
+    place-items: center;
+    grid-template-rows: 100px 1fr;
+    grid-template-areas: "header" "main";
+
+    .content {
+        grid-area: main;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 80%; /* Ajuste conforme necessário */
+      }
+}

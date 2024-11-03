@@ -1,0 +1,38 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 20px;
+
+    .item-form form {
+        display: grid;
+        grid-template-columns: 2fr 1fr auto;
+        grid-template-areas: 'nome qtd submit';
+        grid-gap: 10px;
+        align-items: stretch;
+
+        input {
+            font-size: 1rem;
+            width: 100%;
+            margin: 0;
+        }
+
+        .input-nome {
+            grid-area: 'nome'; 
+          }
+          
+          .input-qtd {
+            grid-area: 'qtd';
+          }
+          
+          .btn-submit {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            mat-icon {
+                margin: 0;
+            }
+          }
+        }
+}

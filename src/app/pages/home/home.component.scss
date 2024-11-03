@@ -1,0 +1,17 @@
+.container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    max-width: 800px;
+    gap: 30px;
+
+    .content {
+        width: 600px;
+
+        .content-area {
+            padding: 30px;
+            border-radius: 8px;
+
+        }
+    }
+}
