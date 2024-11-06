@@ -1,6 +1,7 @@
 export interface Item {
-  itemId: string;
+  id: string;
   nome: string;
   quantidade: number;
   comprado: boolean;
+  //userId: string;
 }

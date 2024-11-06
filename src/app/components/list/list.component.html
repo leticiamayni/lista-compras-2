@@ -16,7 +16,7 @@
     </div>
 
     <div class="item-list">
-        <table mat-table [dataSource]="itens$">
+        <table mat-table [dataSource]="itensDataSource">
             <ng-container matColumnDef="nome">
                 <th mat-header-cell *matHeaderCellDef>Nome</th>
                 <td mat-cell *matCellDef="let item">{{ item.nome }}</td>
@@ -30,15 +30,15 @@
             <ng-container matColumnDef="actions">
                 <th mat-header-cell *matHeaderCellDef>Ações</th>
                 <td mat-cell *matCellDef="let item">
-                    <button mat-icon-button>
+                    <button mat-icon-button (click)="checkedItem(item)">
                         <mat-icon>radio_button_unchecked</mat-icon>
                     </button>
     
-                    <button mat-icon-button>
+                    <button mat-icon-button (click)="deletarItem(item.id)">
                         <mat-icon>delete</mat-icon>
                     </button>
     
-                    <button mat-icon-button>
+                    <button mat-icon-button (click)="editItem(item)">
                         <mat-icon>edit</mat-icon>
                     </button>
                 </td>
@@ -47,5 +47,30 @@
             <tr mat-header-row *matHeaderRowDef="['nome', 'quantidade', 'actions']"></tr>
             <tr mat-row *matRowDef="let row; columns: ['nome', 'quantidade', 'actions'];"></tr>
         </table>
+
+        <!-- Segunda tabela: Lista de itens adicionados -->
+         <table mat-table [dataSource]="itensAdicionadosDataSource">
+            <ng-container matColumnDef="nome">
+                <th mat-header-cell *matHeaderCellDef>Nome</th>
+                <td mat-cell *matCellDef="let item">{{ item.nome }}</td>
+            </ng-container>
+    
+            <ng-container matColumnDef="quantidade">
+                <th mat-header-cell *matHeaderCellDef>Quantidade</th>
+                <td mat-cell *matCellDef="let item">{{ item.quantidade }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef>Ações</th>
+                <td mat-cell *matCellDef="let item">
+                    <button mat-icon-button (click)="checkedItem(item)">
+                        <mat-icon>check_circle</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+            
+            <tr mat-header-row *matHeaderRowDef="['nome', 'quantidade', 'actions']"></tr>
+            <tr mat-row *matRowDef="let row; columns: ['nome', 'quantidade', 'actions'];"></tr>
+         </table>
     </div>
 </div>
