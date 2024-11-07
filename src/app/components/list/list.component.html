@@ -15,6 +15,10 @@
         </form>
     </div>
 
+    <div *ngIf="itens.length === 0 && itensAdicionados.length === 0">
+        <p>Nenhum item encontrado.</p>
+    </div>
+
     <div class="item-list">
         <table mat-table [dataSource]="itensDataSource">
             <ng-container matColumnDef="nome">

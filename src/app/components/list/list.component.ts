@@ -1,5 +1,5 @@
 import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
-import { NgFor, AsyncPipe } from '@angular/common';
+import { NgFor, NgIf, AsyncPipe } from '@angular/common';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -27,6 +27,7 @@ import { v4 as uuidv4 } from 'uuid'
     MatInputModule,
     MatTableModule,
     NgFor,
+    NgIf,
     AsyncPipe
   ],
   templateUrl: './list.component.html',
