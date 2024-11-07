@@ -3,5 +3,5 @@ export interface Item {
   nome: string;
   quantidade: number;
   comprado: boolean;
-  //userId: string;
+  userId: string;
 }

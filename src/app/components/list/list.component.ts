@@ -9,10 +9,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Item } from '../../models/item';
-import { ItemService } from '../../services/item.service';
+//import { ItemService } from '../../services/item.service';
+import { UserService } from '../../services/user.service';
 import { Observable } from 'rxjs';
 import { v4 as uuidv4 } from 'uuid'
-//import { AuthService } from '@auth0/auth0-angular';
 
 
 @Component({
@@ -43,12 +43,12 @@ export class ListComponent implements OnInit, OnChanges {
   itensAdicionadosDataSource = new MatTableDataSource<Item>(this.itensAdicionados);
 
 
-  constructor(private itemService: ItemService) {
+  constructor(private userService: UserService) {
     this.form = new FormGroup({
       id: new FormControl<string | null>(null),
       nome: new FormControl('', [Validators.required]),
       quantidade: new FormControl('', [Validators.required, Validators.min(1)]),
-      comprado: new FormControl(false)
+      comprado: new FormControl(false),
     });
 
     this.itens$ = new Observable<Item[]>();
@@ -66,7 +66,7 @@ export class ListComponent implements OnInit, OnChanges {
 
   //Métodos-------------------------------------------//
   getItens(): void {
-    this.itens$ = this.itemService.getItens();
+    this.itens$ = this.userService.getItens();
 
     this.itens$.subscribe(itens => {
       this.itens = itens.filter(item => !item.comprado);
@@ -82,18 +82,20 @@ export class ListComponent implements OnInit, OnChanges {
     if (this.form.invalid) { return; }
 
     const newItem: Item = { 
-      id: this.form.value.id || uuidv4(), 
-      nome: this.form.value.nome, 
-      quantidade: this.form.value.quantidade, 
-      comprado: this.form.value.comprado || false }; 
+      id: this.form.value.id || uuidv4(),
+      nome: this.form.value.nome,
+      quantidade: this.form.value.quantidade,
+      comprado: this.form.value.comprado || false,
+      userId: ''
+    }; 
       
       if (this.form.value.id) { 
-      this.itemService.updateItem(newItem).subscribe(() => { 
+      this.userService.updateItem(newItem).subscribe(() => { 
         this.getItens(); 
         this.form.reset({ comprado: false });
       }); 
     } else { 
-        this.itemService.addItem(newItem).subscribe(() => { 
+        this.userService.addItem(newItem).subscribe(() => { 
           this.getItens(); 
           this.form.reset({ comprado: false });
         }); 
@@ -107,17 +109,18 @@ export class ListComponent implements OnInit, OnChanges {
       id: this.form.value.id,
       nome: this.form.value.nome,
       quantidade: this.form.value.quantidade,
-      comprado: this.form.value.comprado || false
+      comprado: this.form.value.comprado || false,
+      userId: ''
     };
 
-    this.itemService.updateItem(updatedItem).subscribe(() => { 
+    this.userService.updateItem(updatedItem).subscribe(() => { 
       this.getItens();
       this.form.reset();
     });
   }
 
   deletarItem(id: string): void {
-    this.itemService.deleteItem(id).subscribe(() => {
+    this.userService.deleteItem(id).subscribe(() => {
       this.getItens();
     });
   }
@@ -131,7 +134,7 @@ export class ListComponent implements OnInit, OnChanges {
     item.comprado = !item.comprado;
 
     // Atualiza o item no serviço
-    this.itemService.updateItem(item).subscribe(() => {
+    this.userService.updateItem(item).subscribe(() => {
         // Remove o item da lista atual e adiciona na outra lista conforme o valor de 'comprado'
         if (item.comprado) {
             this.itens = this.itens.filter(i => i.id !== item.id);

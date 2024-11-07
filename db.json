@@ -1,20 +1,14 @@
 {
   "itens": [
     {
-      "id": "612f6a80-922c-4a85-be54-bc21844c5c4f",
+      "id": "2fc667c7-c57b-4822-858a-89f13fb39501",
       "nome": "macarrão",
       "quantidade": 1,
       "comprado": false
     },
     {
-      "id": "3a87cc9a-6e6c-49ef-a827-d5bf97855f53",
-      "nome": "ovo",
-      "quantidade": 6,
-      "comprado": false
-    },
-    {
-      "id": "57193080-50dd-436b-bf12-2e118512e49d",
-      "nome": "farinha",
+      "id": "78571ba6-dc25-471f-9df8-ff4779e78bd4",
+      "nome": "macarrão",
       "quantidade": 1,
       "comprado": false
     }
